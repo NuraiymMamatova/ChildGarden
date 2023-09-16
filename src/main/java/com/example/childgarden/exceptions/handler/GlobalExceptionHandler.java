@@ -6,8 +6,12 @@ import com.example.childgarden.exceptions.ExceptionResponse;
 import com.example.childgarden.exceptions.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
@@ -21,14 +25,14 @@ public class GlobalExceptionHandler {
                 e.getMessage());
     }
 
-    @ExceptionHandler(BadCredentialsException.class)
-    @ResponseStatus(HttpStatus.FORBIDDEN)
-    public ExceptionResponse handlerNotFoundException(BadCredentialsException e) {
 
-        return new ExceptionResponse(
-                HttpStatus.FORBIDDEN,
-                e.getClass().getSimpleName(),
-                e.getMessage());
+    @ExceptionHandler(BadCredentialsException.class)
+    @ResponseBody
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    public Map<String, String> handleBadCredentialsException(BadCredentialsException ex) {
+        Map<String, String> errorResponse = new HashMap<>();
+        errorResponse.put("message", ex.getMessage());
+        return errorResponse;
     }
 
     @ExceptionHandler(BadRequestException.class)

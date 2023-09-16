@@ -17,7 +17,7 @@ import static jakarta.persistence.CascadeType.*;
 public class Role {
 
     @Id
-    @SequenceGenerator(name = "role_gen", sequenceName = "role_seq", allocationSize = 1)
+    @SequenceGenerator(name = "role_gen", sequenceName = "role_seq", allocationSize = 1,initialValue = 4)
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "role_gen")
     private Long id;
 

@@ -10,6 +10,10 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import jakarta.persistence.*;
+import validations.EmailValidation;
+import validations.PasswordValidation;
+import validations.PhoneNumberValidation;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -32,7 +36,6 @@ public class User implements UserDetails {
 
     private String surname;
 
-    @Email
     @Column(unique = true)
     private String email;
 
