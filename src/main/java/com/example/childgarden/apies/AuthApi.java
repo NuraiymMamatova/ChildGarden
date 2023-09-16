@@ -8,6 +8,7 @@ import com.example.childgarden.dto.request.WebRegistrationRequest;
 import com.example.childgarden.dto.response.AuthorizationResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -24,19 +25,19 @@ public class AuthApi {
 
     @PostMapping("/login")
     @Operation(summary = "Sign in", description = "Any user can authenticate")
-    public AuthorizationResponse login(@RequestBody LoginRequest request) {
+    public AuthorizationResponse login(@RequestBody @Valid LoginRequest request) {
         return userService.login(request);
     }
 
     @PostMapping("/registration/mobile")
     @Operation(summary = "Sign up mobile", description = "This is mobile registration. Roles: PARENT, TEACHER, CHILD_GARDEN")
-    public AuthorizationResponse mobileRegistration(@RequestBody MobileRegistrationRequest signupRequest) {
+    public AuthorizationResponse mobileRegistration(@RequestBody @Valid MobileRegistrationRequest signupRequest) {
         return authService.mobileRegistration(signupRequest);
     }
 
     @PostMapping("/registration/web")
     @Operation(summary = "Sign up web", description = "This is web registration. Roles: PARENT, TEACHER, CHILD_GARDEN")
-    public AuthorizationResponse webRegistration(@RequestBody WebRegistrationRequest webRegistrationRequest) {
+    public AuthorizationResponse webRegistration(@RequestBody @Valid WebRegistrationRequest webRegistrationRequest) {
         return authService.webRegistration(webRegistrationRequest);
     }
 

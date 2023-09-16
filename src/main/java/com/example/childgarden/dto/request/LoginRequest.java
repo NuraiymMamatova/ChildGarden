@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import validations.EmailValidation;
+import validations.PasswordValidation;
 
 @Getter
 @Setter
@@ -14,10 +16,11 @@ import lombok.Setter;
 @NoArgsConstructor
 public class LoginRequest {
 
-    @Email
+    @EmailValidation
     @NotBlank
     @NotNull
     private String email;
 
+    @PasswordValidation
     private String password;
 }

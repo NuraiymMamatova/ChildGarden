@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import validations.EmailValidation;
+import validations.PasswordValidation;
 
 @Getter
 @Setter
@@ -18,11 +20,12 @@ public class MobileRegistrationRequest {
 
     private String surname;
 
-    @Email
+    @EmailValidation
     @NotBlank
     @NotNull
     private String email;
 
+    @PasswordValidation
     private String password;
 
     private String roleName;

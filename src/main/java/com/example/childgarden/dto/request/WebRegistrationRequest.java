@@ -7,6 +7,9 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import validations.EmailValidation;
+import validations.PasswordValidation;
+import validations.PhoneNumberValidation;
 
 @Getter
 @Setter
@@ -18,15 +21,18 @@ public class WebRegistrationRequest {
 
     private String language;
 
-    @Email
+    @EmailValidation
     @NotBlank
     @NotNull
     private String email;
 
+    @PasswordValidation
     private String password;
 
     private String roleName;
 
+
+    @PhoneNumberValidation
     private String phoneNumber;
 
 }
