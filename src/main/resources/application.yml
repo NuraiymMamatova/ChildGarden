@@ -13,3 +13,6 @@ spring:
     init:
       data-locations: classpath*:db/data.sql
       mode: never
+
+server:
+  port: 1234
