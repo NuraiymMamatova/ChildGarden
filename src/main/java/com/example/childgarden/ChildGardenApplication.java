@@ -15,6 +15,7 @@ public class ChildGardenApplication {
         SpringApplication.run(ChildGardenApplication.class, args);
         System.out.println("Hello here is your token " + generateSafeToken());
         System.out.println("CurrentDir: " + (new File(".").getCanonicalPath()));
+        System.out.println("CurrentDir: " + (new File(".").getAbsolutePath()));
     }
 
     private static String generateSafeToken() {
