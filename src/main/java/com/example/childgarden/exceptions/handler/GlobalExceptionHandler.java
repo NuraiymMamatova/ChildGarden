@@ -1,10 +1,8 @@
 package com.example.childgarden.exceptions.handler;
 
-import com.example.childgarden.exceptions.BadCredentialsException;
-import com.example.childgarden.exceptions.BadRequestException;
-import com.example.childgarden.exceptions.ExceptionResponse;
-import com.example.childgarden.exceptions.NotFoundException;
+import com.example.childgarden.exceptions.*;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -43,6 +41,12 @@ public class GlobalExceptionHandler {
                 HttpStatus.BAD_REQUEST,
                 e.getClass().getSimpleName(),
                 e.getMessage());
+    }
+
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public ResponseEntity<String> handleDataIntegrityViolationException(DataIntegrityViolationException ex) {
+        String errorMessage = "Ошибка: электронная почта уже существует.";
+        return new ResponseEntity<>(errorMessage, HttpStatus.CONFLICT);
     }
 
 }
