@@ -14,9 +14,11 @@ import validations.EmailValidation;
 import validations.PasswordValidation;
 import validations.PhoneNumberValidation;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 import static jakarta.persistence.CascadeType.*;
 
@@ -48,6 +50,9 @@ public class User implements UserDetails {
     private String childGardenName;
 
     private String phoneNumber;
+
+    @ElementCollection
+    private Map<LocalDate, Boolean> participationSheet;
 
     @ManyToMany(targetEntity = Role.class, cascade = {REFRESH, DETACH, MERGE, PERSIST}, mappedBy = "users", fetch = FetchType.EAGER)
     private List<Role> roles;
